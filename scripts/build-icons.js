@@ -25,14 +25,16 @@ const generateIcons = (folder) => {
     const iconsPath = path.join(folder, 'svg', type);
     fs.readdirSync(iconsPath).forEach((file) => {
       const svgContent = fs.readFileSync(path.join(iconsPath, file), 'utf8');
-      const svgPathMatch = svgContent.match(/<path[^>]*d="([^"]*)"[^>]*>/);
-      if (svgPathMatch) {
-        let svgPath = svgPathMatch[0];
-        if(type === 'outline') {
-          svgPath = svgPath.replace('<path', '<path fill="none"');
-        }
+      const svgPathMatches = svgContent.match(/<path[^>]*d="([^"]*)"[^>]*>/g);
+      if (svgPathMatches) {
+        let svgPaths = svgPathMatches.map(svgPath => {
+          if (type === 'outline') {
+            return svgPath.replace('<path', '<path fill="none"');
+          }
+          return svgPath;
+        }).join('\n');
         const iconName = dashToCamelConverter(file.replace('.svg', ''));
-        const iconComponent = heroiconTemplate(iconName, svgPath);
+        const iconComponent = heroiconTemplate(iconName, svgPaths);
         fs.writeFileSync(path.join(folder, type, `${iconName}.tsx`), iconComponent);
       }
     });

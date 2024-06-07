@@ -29,6 +29,7 @@ function ChevronDoubleUpIcon(props: IconProps, ref) {
       {...restProps}
     >
       <path fill="none" d="M4.5 18.75L12 11.25L19.5 18.75" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill="none" d="M4.5 12.75L12 5.25L19.5 12.75" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </Icon>
   );
 }
