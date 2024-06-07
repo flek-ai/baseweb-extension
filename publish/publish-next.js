@@ -20,7 +20,7 @@ const publishNext = () => {
   }
 };
 
-fetch(`https://registry.npmjs.org/baseweb-extension`)
+fetch(`https://registry.npmjs.org/@flek-ai/baseweb-extension`)
   .then((response) => response.json())
   .then((data) => {
     const latest = data["dist-tags"].latest;
