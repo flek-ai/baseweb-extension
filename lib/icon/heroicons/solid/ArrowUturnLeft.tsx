@@ -1,10 +1,10 @@
 
 import * as React from "react";
 import { useStyletron } from "baseui/styles";
-import { mergeOverride, toObjectOverride } from "../../../../helpers/overrides";
+import { mergeOverride, toObjectOverride } from "../../../helpers/overrides";
 
-import Icon from "../../../icon";
-import type { IconProps } from "../../../types";
+import Icon from "../../icon";
+import type { IconProps } from "../../types";
 
 // @ts-ignore
 function ArrowUturnLeftIcon(props: IconProps, ref) {
