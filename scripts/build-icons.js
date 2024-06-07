@@ -15,14 +15,12 @@ const { heroiconTemplate } = require('../lib/icon/heroicon-template');
 
 const generateIcons = (folder) => {
   const iconTypes = ['outline', 'solid'];
-  // delete the react folder if it exists  
-  fs.rmSync(path.join(folder, 'react'), { recursive: true, force: true });
-  const reactFolder = path.join(folder, 'react');
-  fs.mkdirSync(reactFolder, { recursive: true });
-  const reactOutlineFolder = path.join(reactFolder, 'outline');
-  const reactSolidFolder = path.join(reactFolder, 'solid');
-  fs.mkdirSync(reactOutlineFolder, { recursive: true });
-  fs.mkdirSync(reactSolidFolder, { recursive: true });
+  // delete the solid and outline folders if they exist
+  fs.rmSync(path.join(folder, 'solid'), { recursive: true, force: true });
+  fs.rmSync(path.join(folder, 'outline'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(folder, 'solid'), { recursive: true });
+  fs.mkdirSync(path.join(folder, 'outline'), { recursive: true });
+
   iconTypes.forEach((type) => {
     const iconsPath = path.join(folder, 'svg', type);
     fs.readdirSync(iconsPath).forEach((file) => {
@@ -35,7 +33,7 @@ const generateIcons = (folder) => {
         }
         const iconName = dashToCamelConverter(file.replace('.svg', ''));
         const iconComponent = heroiconTemplate(iconName, svgPath);
-        fs.writeFileSync(path.join(folder, 'react', type, `${iconName}.tsx`), iconComponent);
+        fs.writeFileSync(path.join(folder, type, `${iconName}.tsx`), iconComponent);
       }
     });
   });
