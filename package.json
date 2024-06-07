@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:lib": "node ./scripts/build.js"
+    "build:lib": "node ./scripts/build.js",
+    "build:icons": "node ./scripts/build-icons.js"
   },
   "author": "Ishan Sharma <ishan@flek.ai>",
   "license": "MIT",
