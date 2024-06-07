@@ -42,3 +42,4 @@ const generateIcons = (folder) => {
 };
 
 generateIcons(path.join(__dirname, '../lib/icon/heroicons'));
+generateIcons(path.join(__dirname, '../lib/icon/custom'));
