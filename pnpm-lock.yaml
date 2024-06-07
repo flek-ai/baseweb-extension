@@ -7,10 +7,28 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
+      '@types/node':
+        specifier: 20.10.5
+        version: 20.10.5
+      '@types/react':
+        specifier: ^18.2.45
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: ^18.2.18
+        version: 18.3.0
       baseui:
         specifier: 0.0.0-next-6fabc7134
         version: 0.0.0-next-6fabc7134(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styletron-react@6.1.1(react@18.3.1))
+      esbuild:
+        specifier: ^0.21.4
+        version: 0.21.4
+      react:
+        specifier: '>=18'
+        version: 18.3.1
+      react-dom:
+        specifier: '>=18'
+        version: 18.3.1(react@18.3.1)
       react-is:
         specifier: '>=18'
         version: 18.3.1
@@ -23,25 +41,6 @@ importers:
       styletron-standard:
         specifier: '>=3'
         version: 3.1.0
-    devDependencies:
-      '@types/node':
-        specifier: 20.10.5
-        version: 20.10.5
-      '@types/react':
-        specifier: ^18.2.45
-        version: 18.3.3
-      '@types/react-dom':
-        specifier: ^18.2.18
-        version: 18.3.0
-      esbuild:
-        specifier: ^0.21.4
-        version: 0.21.4
-      react:
-        specifier: ^18.2.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.3.1(react@18.3.1)
       typescript:
         specifier: 5.3.3
         version: 5.3.3

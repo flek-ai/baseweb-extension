@@ -1,11 +1,11 @@
 const pkg = require('../package.json');
 
 require('esbuild').build({
-  entryPoints: ['lib/index.tsx'],
-  outfile: 'dist/index.js',
-  bundle: true,
+  entryPoints: ['./lib/**/*.js','./lib/**/*.jsx','./lib/**/*.ts','./lib/**/*.tsx'],
+  outdir: 'dist',
   format: 'esm',
-  external: [
-    ...Object.keys(pkg.peerDependencies || {})
-  ],
+  // bundle: true,
+  // external: [
+  //   ...Object.keys(pkg.peerDependencies || {})
+  // ],
 });
