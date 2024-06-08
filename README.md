@@ -1,40 +1,22 @@
 # baseweb-extension
 
-# ListIcons
+## installation
 ```
-import { ListIcons } from "@flek-ai/baseweb-extension";
-```
-
-While using the `ListIcons` component, you can pass in the name of the icon you want to use.
-While using BaseUI Icons this is done like this:
-```
-import { ArrowLeft } from "baseui/icon";
-<ListItem
-    artwork={<ArrowLeft />}
-    artworkSize={ARTWORK_SIZES.MEDIUM}
->
+npm i @flek-ai/baseweb-extension@next for the lastest version
 ```
 
-For example:
+## icon
+- supports all heroicons right now https://heroicons.com/
+- these icons work with baseweb and follow the theming of baseweb
+- import them like this:
 ```
-<ListItem
-    artwork={ListIcons("car")}
-    artworkSize={ARTWORK_SIZES.MEDIUM}
->
+import { MapPin } from "@flek-ai/baseweb-extension/icon/heroicons/outline/MapPin";
+import { ShoppingCart } from "@flek-ai/baseweb-extension/icon/heroicons/outline/ShoppingCart";
 ```
-
-Currently supports these icons:
-- car
-
-TODO:
-- This will most probably be generalised to icons everywhere
-- theme might not work with the icons, should work but haven't tested
-- Icons should be separted as this would load all the icons together
-
-
-# General
-Needs to be changed to support multiple components
-
+- support one custom icon
+```
+import { Car } from "@flek-ai/baseweb-extension/icon/custom/solid/Car";
+```
 
 
 
