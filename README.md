@@ -1,25 +1,34 @@
 # baseweb-extension
 
 ## installation
-- next branch for the latest version
-- stable release soon
+- next tag for latest release
 ```
 npm i @flek-ai/baseweb-extension@next
 ```
 
 ## icon
-- supports all heroicons right now https://heroicons.com/
-- these icons work with baseweb and follow the theming of baseweb
-- import them like this:
+- icons work with baseweb and follow the theming of baseweb
+### import them like this:
+- $icon-name - list of supported icons given below
+- $library - `heroicons`,`custom`
+- $type - `outline`, `solid`
+
+### Supported icons
+- List of supported icons is here - `https://github.com/flek-ai/baseweb-extension/tree/main/lib/icon/icons.json`
+- Heroicon folder: `https://github.com/flek-ai/baseweb-extension/tree/main/lib/icon/heroicons`
+- Custom folder: `https://github.com/flek-ai/baseweb-extension/tree/main/lib/icon/custom`
+```
+import { $icon-name } from "@flek-ai/baseweb-extension/icon/$library/$type/$icon-name";  
+```
+Examples:
+- heroicons
 ```
 import { MapPin } from "@flek-ai/baseweb-extension/icon/heroicons/outline/MapPin";
 import { ShoppingCart } from "@flek-ai/baseweb-extension/icon/heroicons/outline/ShoppingCart";
 ```
-- support one custom icon
+- custom
 ```
 import { Car } from "@flek-ai/baseweb-extension/icon/custom/solid/Car";
 ```
-
-
 
 

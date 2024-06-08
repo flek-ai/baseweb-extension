@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const { dashToCamelConverter } = require('../lib/utils/case');
-const { heroiconTemplate } = require('../lib/icon/heroicon-template');
+const fs = require("fs");
+const path = require("path");
+const { dashToCamelConverter } = require("../lib/utils/case");
+const { heroiconTemplate } = require("../lib/icon/heroicon-template");
 
 /**
  * The ./lib/icon/heroicons/ has 2 folders outline and solid
@@ -14,32 +14,52 @@ const { heroiconTemplate } = require('../lib/icon/heroicon-template');
  */
 
 const generateIcons = (folder) => {
-  const iconTypes = ['outline', 'solid'];
+  const icons = {};
+  const iconTypes = ["outline", "solid"];
+  iconTypes.forEach((type) => {
+    icons[type] = [];
+  });
   // delete the solid and outline folders if they exist
-  fs.rmSync(path.join(folder, 'solid'), { recursive: true, force: true });
-  fs.rmSync(path.join(folder, 'outline'), { recursive: true, force: true });
-  fs.mkdirSync(path.join(folder, 'solid'), { recursive: true });
-  fs.mkdirSync(path.join(folder, 'outline'), { recursive: true });
+  fs.rmSync(path.join(folder, "solid"), { recursive: true, force: true });
+  fs.rmSync(path.join(folder, "outline"), { recursive: true, force: true });
+  fs.mkdirSync(path.join(folder, "solid"), { recursive: true });
+  fs.mkdirSync(path.join(folder, "outline"), { recursive: true });
 
   iconTypes.forEach((type) => {
-    const iconsPath = path.join(folder, 'svg', type);
+    const iconsPath = path.join(folder, "svg", type);
     fs.readdirSync(iconsPath).forEach((file) => {
-      const svgContent = fs.readFileSync(path.join(iconsPath, file), 'utf8');
+      const svgContent = fs.readFileSync(path.join(iconsPath, file), "utf8");
       const svgPathMatches = svgContent.match(/<path[^>]*d="([^"]*)"[^>]*>/g);
       if (svgPathMatches) {
-        let svgPaths = svgPathMatches.map(svgPath => {
-          if (type === 'outline') {
-            return svgPath.replace('<path', '<path fill="none"');
-          }
-          return svgPath;
-        }).join('\n');
-        const iconName = dashToCamelConverter(file.replace('.svg', ''));
+        let svgPaths = svgPathMatches
+          .map((svgPath) => {
+            if (type === "outline") {
+              return svgPath.replace("<path", '<path fill="none"');
+            }
+            return svgPath;
+          })
+          .join("\n");
+        const iconName = dashToCamelConverter(file.replace(".svg", ""));
         const iconComponent = heroiconTemplate(iconName, svgPaths);
-        fs.writeFileSync(path.join(folder, type, `${iconName}.tsx`), iconComponent);
+        fs.writeFileSync(
+          path.join(folder, type, `${iconName}.tsx`),
+          iconComponent
+        );
+        icons[type].push(iconName);
       }
     });
   });
+  return icons;
 };
 
-generateIcons(path.join(__dirname, '../lib/icon/heroicons'));
-generateIcons(path.join(__dirname, '../lib/icon/custom'));
+const heroIcons = generateIcons(path.join(__dirname, "../lib/icon/heroicons"));
+const customIcons = generateIcons(path.join(__dirname, "../lib/icon/custom"));
+const icons = {
+  heroicons: heroIcons,
+  custom: customIcons,
+};
+
+fs.writeFileSync(
+  path.join(__dirname, "../lib/icon/icons.json"),
+  JSON.stringify(icons, null, 2)
+);
