@@ -1,8 +1,10 @@
 # baseweb-extension
 
 ## installation
+- next branch for the latest version
+- stable release soon
 ```
-npm i @flek-ai/baseweb-extension@next for the lastest version
+npm i @flek-ai/baseweb-extension@next
 ```
 
 ## icon
