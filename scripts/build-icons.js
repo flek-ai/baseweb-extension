@@ -35,6 +35,8 @@ const generateIcons = (folder) => {
           .map((svgPath) => {
             if (type === "outline") {
               return svgPath.replace("<path", '<path fill="none"');
+            } else if (type === "solid") {
+              return svgPath.replace(/fill="[^"]*"/, '');
             }
             return svgPath;
           })
